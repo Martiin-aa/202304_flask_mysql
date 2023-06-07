@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block titulo %}Edit{% endblock %}
+
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Editar {{usuario.nombre}}</h1>
+            <input type="hidden" name="id" value={{usuario.id}}>
+        </div>
+        <form action="/user/update" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="nombre" value="{{usuario.nombre}}">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="apellido" value="{{usuario.apellido}}">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email" value="{{usuario.email}}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" value="Usuario Update" class="btn btn-primary">Actualizar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

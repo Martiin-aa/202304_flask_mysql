@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block titulo %} Usuarios {% endblock %}
+
+{% block contenido %}
+<div class="card" style="background-color: darkcyan;">
+    <div class="card-body">
+        <h1 class="card-title" style="color: white">Todos los Usuarios</h1>
+    </div>
+    <div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre Completo</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Creado en</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <th scope="row">{{usuario.id}}</th>
+                    <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.created_at}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <p>
+        <a class="btn btn-primary" href="/user/new" role="button" style="font-size: 20px;">Añade Usuario</a>
+    </p>
+</div>
+{% endblock %}
