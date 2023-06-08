@@ -1,47 +1,52 @@
-from mysqlconnection import connectToMySQL
+from flask import render_template,redirect,request
+from flask_app import app
+from flask_app.models.usuario import Usuario
 
-class Usuario:
-    def __init__(self, data):
-        self.id = data.get('id', 0)
-        self.nombre = data['nombre']
-        self.apellido = data['apellido']
-        self.email = data['email']
-        self.created_at = data.get('created_at', '')
-        self.updated_at = data.get('updated_at', '')
+@app.route('/')
+def inicio():
+    return redirect('/users')
 
-    @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM usuarios;"
-        result = connectToMySQL('users_schema').query_db(query);
-        usuarios= []
-        for x in result:
-            usuarios.append(cls(x))
-        return usuarios
+@app.route('/users')
+def usuarios():
+    return render_template('usuarios.html', usuarios=Usuario.get_all())
+
+@app.route('/user/new')
+def new():
+    return render_template('base.html')
+
+@app.route('/user/edit/<int:id>')
+def edit(id):
+    data = {
+        "id":id
+    }
+    return render_template('editar.html', usuario=Usuario.get_one(data))
+
+@app.route('/user/show/<int:id>')
+def show(id):
+    data = {
+        "id":id
+    }
+    return render_template('usuario.html', usuario=Usuario.get_one(data))
+
+@app.route('/user/delete/<int:id>')
+def delete(id):
+    data = {
+        "id":id
+    }
+    Usuario.delete(data)
+    return redirect('/users')
+
+@app.route('/user/create', methods=['GET', 'POST'])
+def create():
+    print(request.form)
+    if request.method == 'POST':
+        Usuario.save(request.form)
+        return redirect('/users')
+
+@app.route('/user/update', methods=['GET', 'POST'])
+def update():
+    print(request.form)
+    if request.method == 'POST':
+        Usuario.update(request.form)
+        return redirect('/users')
     
-    @classmethod
-    def get_one(cls, data):
-        query = "SELECT * FROM usuarios WHERE id = %(id)s;"
-        result = connectToMySQL('users_schema').query_db(query, data);
-        return cls(result[0])
-
-    @classmethod
-    def save(cls, data):
-        query = """
-        INSERT INTO usuarios (nombre, apellido, email, created_at, updated_at) 
-        VALUES (%(nombre)s, %(apellido)s, %(email)s, NOW(), NOW());
-        """
-        result = connectToMySQL('users_schema').query_db(query, data)
-        return result
-
-    @classmethod
-    def update(cls, data):
-        query = """
-        UPDATE usuarios SET nombre=%(nombre)s, apellido=%(apellido)s, email=%(email)s, updated_at=NOW() 
-        WHERE id = %(id)s;
-        """
-        return connectToMySQL('users_schema').query_db(query, data)
-    
-    @classmethod
-    def delete(cls, data):
-        query = "DELETE FROM usuarios WHERE id = %(id)s"
-        return connectToMySQL('users_schema').query_db(query, data)
