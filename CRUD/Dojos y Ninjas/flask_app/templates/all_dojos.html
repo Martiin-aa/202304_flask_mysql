@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titulo %}Read (All){% endblock %}
+
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Nuevo Dojo</h1>
+        </div>
+        <form action="/dojo/create" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="nombre">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Todos los Dojos</h1>
+        </div>
+        <div class="mb-3" style="font-size: 25px;">
+            {% for dojo in dojos %}
+            <p>
+                <a class="link-opacity-100-hover" href="/dojos/{{dojo.id}}">{{dojo.nombre}}</a>
+            </p>
+            {% endfor %}
+        </div>
+        <hr>
+        <p>
+            <a class="btn btn-primary" href="/ninjas" role="button" style="font-size: 20px;">Añade Ninja</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

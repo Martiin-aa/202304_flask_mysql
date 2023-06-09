@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block titulo %}Read (One){% endblock %}
+
+{% block contenido %}
+<div class="col-lg-8 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 835px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">{{dojo.nombre}} Ninjas</h1>
+        </div>
+        <div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ninja in dojo.ninjas %}
+                    <tr>
+                        <th scope="row">{{ninja.nombre}}</th>
+                        <td>{{ninja.apellido}}</td>
+                        <td>{{ninja.edad}}</td>
+                    </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
