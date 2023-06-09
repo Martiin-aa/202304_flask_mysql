@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block titulo %}Books{% endblock %}
+
+{% include 'menu.html' %}
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Nuevo Libro</h1>
+        </div>
+        <form action="/create/book" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"># de Paginas</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="num_of_pages">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary" value="Add Book">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Todos los Libros</h1>
+        </div>
+        <div class="mb-3" style="font-size: 25px;">
+            {% for one_book in all_books %}
+            <p>
+                <a class="link-opacity-100-hover" href="/book/{{one_book.id}}">{{one_book.title}}</a>
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

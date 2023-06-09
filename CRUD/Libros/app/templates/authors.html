@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block titulo %}Authors{% endblock %}
+
+
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Nuevo Autor</h1>
+        </div>
+        <form action="/create/author" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="name">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan; width: 525px;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Todos los Autores</h1>
+        </div>
+        <div class="mb-3" style="font-size: 25px;">
+            {% for one_author in all_authors %}
+            <p>
+                <a class="link-opacity-100-hover" href="/author/{{one_author.id}}">{{one_author.name}}</a>
+            </p>
+            {% endfor %}
+        </div>
+        <hr>
+        <p>
+            <a class="btn btn-primary" href="/books" role="button" style="font-size: 20px;">Añade Libro</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

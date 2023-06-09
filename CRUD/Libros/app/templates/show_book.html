@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block titulo %}Show Book{% endblock %}
+
+{% include 'menu.html' %}
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Titulo: {{book.title}}</h1>
+            <p>Favorito de:</p>
+            {% for author in book.authors_who_favorited %}
+            <p>{{author.name}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="card" style="background-color: darkcyan;">
+    <div class="card-body">
+        <form action="/join/author" method="post">
+            <h1 class="card-title" style="color: white">Añadir Libro favorito</h1>
+            <input type="hidden" name="book_id" value="{{book.id}}">
+            <div class="mb-3">
+                <label for="author_id" class="form-label">Libro:</label>
+                <select class="form-select" aria-label="Default select example" name="author_id">
+                    {% for author in unfavorited_authors %}
+                        <option value="{{author.id}}">{{author.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
