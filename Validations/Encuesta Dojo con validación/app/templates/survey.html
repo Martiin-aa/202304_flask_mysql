@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block titulo %} Formulario Dojo {% endblock %}
+
+
+{% block contenido %}
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Encuesta Dojo</h1>
+        </div>
+        <form action="/create/survey" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="floatingEmptyPlaintextInput" class="mb-2">Ubicación Dojo</label>
+                <select class="form-select" aria-label="Default select example" name="location">
+                    {% for survey in surveys %}
+                    <option value="{{survey.location}}">{{survey.location}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="floatingEmptyPlaintextInput" class="mb-2">Idioma</label>
+                <select class="form-select" aria-label="Default select example" name="language">
+                    {% for survey in surveys %}
+                    <option value="{{survey.language}}">{{survey.language}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Comentarios</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comments"></textarea>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

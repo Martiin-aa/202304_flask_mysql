@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block titulo %} Resultados {% endblock %}
+
+{% block contenido %}
+<div class="card" style="background-color: darkcyan;">
+    <div class="card-body">
+        <h1 class="card-title" style="color: white">{{survey.name}}</h1>
+    </div>
+    <div class="mb-3" style="font-size: 25px;">
+        <label for="floatingEmptyPlaintextInput" class="mb-2">Ubicación Dojo: {{survey.location}}</label>
+    </div>
+    <div class="mb-3" style="font-size: 25px;">
+        <label for="floatingEmptyPlaintextInput" class="mb-2">Idioma: {{survey.language}}</label>
+    </div>
+    <div class="mb-3" style="font-size: 25px;">
+        <label for="exampleFormControlTextarea1" class="form-label">Comentarios: {{survey.comments}}</label>
+    </div>
+    <hr>
+    <p>
+        <a href="/" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="font-size: 25px;">Inicio</a>
+    </p>
+</div>
+{% endblock %}
