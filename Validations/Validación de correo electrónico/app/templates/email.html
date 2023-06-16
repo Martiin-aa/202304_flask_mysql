@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block titulo %} Registro {% endblock %}
+
+
+{% block contenido %}
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Registro</h1>
+        </div>
+        <form action="/process" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Añadir</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

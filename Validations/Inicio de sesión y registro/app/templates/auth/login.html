@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block titulo %}Bienvenidos al Login{% endblock %}
+
+{% block contenido %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Registrate</h1>
+        </div>
+        <form action="/register" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="password">
+                <div id="emailHelp" class="form-text">No compartas la clave con nadie.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="confirm_password">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success" value="Register">Registrarse</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-lg-5 col-md-6 col-sm-12">
+    <div class="card" style="background-color: darkcyan;">
+        <div class="card-body">
+            <h1 class="card-title" style="color: white">Ingresa al sistema</h1>
+        </div>
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="password">
+                <div id="emailHelp" class="form-text">No compartas la clave con nadie.</div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary" value="Login">Entrar al Sistema</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

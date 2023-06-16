@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %} Resultados {% endblock %}
+
+{% block contenido %}
+<div class="card" style="background-color: darkcyan;">
+    <div class="card-body">
+        <h1 class="card-title" style="color: white">Estos son los emails</h1>
+    </div>
+    {% for email in emails %}
+            <p>{{email.email}}  {{email.created_at}} <a href="/destroy/{{email.id}}">Delete</a></p>
+    {% endfor %}
+    <hr>
+    <p>
+        <a href="/" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="font-size: 25px;">Inicio</a>
+    </p>
+</div>
+{% endblock %}
